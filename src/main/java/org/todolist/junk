@@ -1,0 +1,135 @@
+package TODOLIST;
+
+import java.sql.*;
+import java.util.Scanner;
+
+public class loginexam {
+    static String todousername;
+    static String passwd;
+
+    public static void dbConnection() throws SQLException {
+        String url = "jdbc:mysql://localhost:3306/TodoUserdetails";
+        String DBusername = "root";
+        String DBpassword = "Sharon@1602";
+        Connection con = DriverManager.getConnection(url, DBusername, DBpassword);
+
+        // Use a LEFT JOIN to check if the login credentials exist in UserRegister
+        String query = "SELECT UserRegister.userid FROM UserLogin LEFT JOIN UserRegister ON UserLogin.userid = UserRegister.userid WHERE UserRegister.todousername = ? AND UserRegister.passwd = ?";
+        try (PreparedStatement pst = con.prepareStatement(query)) {
+            pst.setString(1, todousername);
+            pst.setString(2, passwd);
+
+            ResultSet resultSet = pst.executeQuery();
+
+            if (resultSet.next()) {
+                // User exists in UserRegister, login successful
+                System.out.println("Logged in successfully!");
+
+                // Insert a record into UserLogin with login timestamp
+                String insertLoginQuery = "INSERT INTO UserLogin (userid, login_time) VALUES (?, CURRENT_TIMESTAMP)";
+                try (PreparedStatement insertPst = con.prepareStatement(insertLoginQuery)) {
+                    insertPst.setInt(1, resultSet.getInt("userid"));
+                    int rowsInserted = insertPst.executeUpdate();
+                    System.out.println(rowsInserted + " row(s) inserted into UserLogin.");
+                }
+            } else {
+                // User does not exist or invalid credentials
+                System.out.println("Invalid credentials. Login failed.");
+            }
+        }
+
+        con.close();
+    }
+
+    public void login() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter your Name:");
+        todousername = scanner.nextLine();
+
+        System.out.println("Enter your Password:");
+        passwd = scanner.nextLine();
+    }
+
+    public static void main(String[] args) throws SQLException {
+        loginexam login = new loginexam();
+        login.login();
+        login.dbConnection();
+    }
+}
+o/p saying invalid credentials
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+package TODOLIST;
+
+import java.sql.*;
+import java.util.Scanner;
+
+public class Login {
+    static Timestamp datenow;
+    static int userid;
+    static String todousername;
+   static String passwd;
+    public static void dbconnection() throws SQLException {
+        String url = "jdbc:mysql://localhost:3306/TodoUserdetails";
+        String DBusername = "root";
+        String DBpassword = "Sharon@1602";
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TodoUserdetails" , "root", "Sharon@1602");
+
+        String query = "select UserRegister.userid, UserRegister.todousername,UserRegister.passwd,UserLogin.datenow  from UserRegister Left JOIN UserLogin " +
+                "on UserRegister.userid=UserLogin.userid  WHERE " + "UserRegister.todousername = ? AND UserRegister.passwd = ?;";
+        //SELECT * FROM UserRegister WHERE todousername = ? AND passwd = ?"
+        PreparedStatement pst = con.prepareStatement(query);
+        pst.setTimestamp(1, datenow);
+        pst.setInt(2, userid);
+        pst.setString(3, todousername);
+        pst.setString(4, passwd);
+
+        int rows = pst.executeUpdate();
+        // System.out.println("Number of rows added:" + rows);
+       // con.close();
+        ResultSet resultSet = pst.executeQuery();
+
+        if (resultSet.next()) {
+
+
+            System.out.println("Logged in successfully!");
+
+
+
+            String insertLoginQuery = "INSERT INTO UserLogin (userid, datenow) VALUES (?, CURRENT_TIMESTAMP)";
+            try (PreparedStatement insertPst = con.prepareStatement(insertLoginQuery)) {
+                insertPst.setInt(1, resultSet.getInt("userid"));
+                int rowsInserted = insertPst.executeUpdate();
+                System.out.println(rowsInserted + " row(s) inserted into UserLogin.");
+            }
+        } else {
+
+
+            System.out.println("Invalid credentials. Login failed.");
+        }
+        con.close();
+    }
+    public void login() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter your Name:");
+        todousername = scanner.nextLine();
+
+        System.out.println("Enter your Password:");
+        passwd = scanner.nextLine();
+
+    }
+    public void print(){
+        System.out.println("Loggedin Successfully....!!!");
+    }
+
+    public static void main(String[] args) throws SQLException {
+        Login logon = new Login();
+        logon.login();
+        logon.dbconnection();
+        logon.print();
+
+
+    }
+}
+o/p saying errror
