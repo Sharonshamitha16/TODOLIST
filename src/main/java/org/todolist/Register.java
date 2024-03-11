@@ -7,13 +7,11 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 
-
-
 public class Register {
     static int userid;
     static String todousername;
     static String passwd, confirmpasswd;
-    static String email; //email1;
+    static String email, email1;
     static String gender;
 
     public static String register() {
@@ -39,10 +37,10 @@ public class Register {
         }
         System.out.println("Enter your Email:");
         email = scanner.nextLine();
-        //while(true){
+//        while(true){
 //            System.out.println("Enter valid Email:");
 //            email1 = scanner.nextLine();
-
+//
 //        if (email.contains("@")) {
 //            // System.out.println("Valid email format.");
 //            // break;
@@ -68,45 +66,25 @@ public class Register {
 //        String DBusername = "root";
 //        String DBpassword = "Sharon@1602";
 //        Connection con = DriverManager.getConnection(url, DBusername, DBpassword);
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TodoUserdetails", "root", "Sharon@1602");
-        String query = "insert into UserRegister (todousername, passwd, email, gender)values(?,?,?,?);";
-        PreparedStatement pst = con.prepareStatement(query);
+        try {
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TodoUserdetails", "root", "Sharon@1602");
+            String query = "insert into UserRegister (todousername, passwd, email, gender)values(?,?,?,?);";
+            PreparedStatement pst = con.prepareStatement(query);
 
-        pst.setString(1, todousername);
-        pst.setString(2, passwd);
-        pst.setString(3, email);
-        pst.setString(4, gender);
-        int rows = pst.executeUpdate();
-        // System.out.println("Number of rows added:" + rows);
+            pst.setString(1, todousername);
+            pst.setString(2, passwd);
+            pst.setString(3, email);
+            pst.setString(4, gender);
+            int rows = pst.executeUpdate();
+            // System.out.println("Number of rows added:" + rows);
 
-        con.close();
-        return true;
+            con.close();
+            return true;
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }
-//public static boolean dbConnection() {
-//    try {
-//        String url = "jdbc:mysql://localhost:3306/TodoUserdetails";
-//        String DBusername = "root";
-//        String DBpassword = "Sharon@1602";
-//        Connection con = DriverManager.getConnection(url, DBusername, DBpassword);
-//        String query = "INSERT INTO UserRegister (todousername, passwd, email, gender) VALUES (?, ?, ?, ?)";
-//        PreparedStatement pst = con.prepareStatement(query);
-//
-//        pst.setString(1, todousername);
-//        pst.setString(2, passwd);
-//        pst.setString(3, email);
-//        pst.setString(4, gender);
-//        int rows = pst.executeUpdate();
-//        System.out.println("Number of rows added: " + rows);
-//
-//        con.close();
-//        return true;
-//    } catch (SQLException e) {
-//        e.printStackTrace();
-//        return false;
-//    }
-//}
-//
-//
-//}
-//
