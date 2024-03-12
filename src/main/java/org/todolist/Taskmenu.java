@@ -4,9 +4,10 @@ import java.io.Serializable;
 import java.sql.*;
 import java.util.*;
 
-import static org.todolist.Login.passwd;
+
 import static org.todolist.Login.todousername;
 import static org.todolist.Register.userid;
+import static org.todolist.Register.passwd;
 
 public class Taskmenu {
     private static Scanner sc = new Scanner(System.in);
@@ -104,7 +105,8 @@ public class Taskmenu {
         return taskno;
     }
 
-    public Object updatetask(String task_action, String taskwork, Object taskno) throws SQLException {
+
+    public static String updatetask() throws SQLException {
 
         System.out.println("Enter the task   which you wanna update");
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TodoUserdetails", "root", "Sharon@1602");
@@ -143,7 +145,7 @@ public class Taskmenu {
         return "Task has been updated successfully you're task number is" + taskno;
     }
 
-    public Object deletetask(String task_action, String taskwork, Object taskno) throws SQLException {
+    public static Object deletetask() throws SQLException {
         System.out.println("Enter the task number which you wanna delete");
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TodoUserdetails", "root", "Sharon@1602");
 
@@ -184,29 +186,28 @@ public class Taskmenu {
         return "task has been deleted successfully";
     }
 
-        public Serializable displaytask(Connection con) {
-            System.out.println("Enter the task number which you wanna display");
-            String query4 = "select taskaction from task where todousername =? and userid =  ?";
-            con = null;
-            try (PreparedStatement statement = con.prepareStatement(query4)) {
-                statement.setString(1, todousername);
-                statement.setInt(2, userid);
+    public static Serializable displaytask() {
+        System.out.println("Enter the task number which you wanna display");
+        String query4 = "select taskaction from task where todousername =? and userid =  ?";
+        Connection con = null;
+        try (PreparedStatement statement = con.prepareStatement(query4)) {
+            statement.setString(1, todousername);
+            statement.setInt(2, userid);
 
-                try (ResultSet rs = statement.executeQuery()) {
-                    if (rs.next()) {
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
 
-                        return rs.getString("taskaction");
-                    } else {
-                        System.out.println("No task action found for the given todousername and userid.");
-                        return false;
-                    }
+                    return rs.getString("taskaction");
+                } else {
+                    System.out.println("No task action found for the given todousername and userid.");
+                    return false;
                 }
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
             }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-
-
-
-
+    }
 }
+
+
+

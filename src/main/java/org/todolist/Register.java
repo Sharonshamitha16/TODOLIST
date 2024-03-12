@@ -1,19 +1,62 @@
 package org.todolist;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Scanner;
-
-
 public class Register {
-    static int userid;
-    static String todousername;
-    static String passwd, confirmpasswd;
-    static String email, email1;
-    static String gender;
+   static int userid;
+   static String todousername;
+   static String passwd;
+   static String confirmpasswd;
+   private static String email, email1;
+   private static String gender;
+public Register(int userid, String confirmpasswd, String email, String email1, String gender) {
+    Register.userid = userid;
+    Register.confirmpasswd = confirmpasswd;
+    Register.email = email;
+    Register.email1 = email1;
+    Register.gender = gender;
+}
+    public int getUserid() {
+        return userid;
+    }
 
+    public void setUserid(int userid) {
+        Register.userid = userid;
+    }
+
+    public String getConfirmpasswd() {
+        return confirmpasswd;
+    }
+
+    public void setConfirmpasswd(String confirmpasswd) {
+        Register.confirmpasswd = confirmpasswd;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        Register.email = email;
+    }
+
+    public String getEmail1() {
+        return email1;
+    }
+
+    public void setEmail1(String email1) {
+        Register.email1 = email1;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        Register.gender = gender;
+    }
     public static String register() {
         Scanner scanner = new Scanner(System.in);
 
@@ -47,8 +90,6 @@ public class Register {
 //        } else {
 //            System.out.println("Invalid email format.");
 //        }
-
-
         System.out.println("Enter your Gender:");
         gender = scanner.nextLine();
 
@@ -60,28 +101,18 @@ public class Register {
 
         return "successfully completed registration...!!!";
     }
-
     public static boolean dbConnection() throws SQLException {
-//        String url = "jdbc:mysql://localhost:3306/TodoUserdetails";
-//        String DBusername = "root";
-//        String DBpassword = "Sharon@1602";
-//        Connection con = DriverManager.getConnection(url, DBusername, DBpassword);
         try {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TodoUserdetails", "root", "Sharon@1602");
             String query = "insert into UserRegister (todousername, passwd, email, gender)values(?,?,?,?);";
             PreparedStatement pst = con.prepareStatement(query);
-
             pst.setString(1, todousername);
             pst.setString(2, passwd);
             pst.setString(3, email);
             pst.setString(4, gender);
             int rows = pst.executeUpdate();
-            // System.out.println("Number of rows added:" + rows);
-
             con.close();
             return true;
-
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
