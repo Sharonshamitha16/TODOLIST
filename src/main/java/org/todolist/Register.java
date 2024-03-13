@@ -14,6 +14,12 @@ public class Register {
     private static String email, email1;
     private static String gender;
 
+    public void setUserid(){
+        this.userid = userid;
+    }
+    public static int getuserid(String todousername){
+        return 0;
+    }
     public Register(int userid, String confirmpasswd, String email, String email1, String gender) {
         Register.userid = userid;
         Register.passwd = passwd;

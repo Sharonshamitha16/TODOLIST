@@ -4,12 +4,15 @@ import java.sql.*;
 import java.util.*;
 
 import static org.todolist.Register.confirmpasswd;
+import static org.todolist.Register.userid;
 
 public class Login {
     static String todousername;
     static String passwd;
 
-
+    public static int getuserid(String todousername) {
+        return userid;
+    }
     public static String login() throws SQLException {
         Scanner scanner = new Scanner(System.in);
 
@@ -110,6 +113,8 @@ public class Login {
         }
         return true;
     }
+
+
 }
 
 

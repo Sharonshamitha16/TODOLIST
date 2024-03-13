@@ -7,8 +7,7 @@ import java.util.Scanner;
 import static org.todolist.Deletetask.deletetask;
 import static org.todolist.Displaytask.displaytask;
 import static org.todolist.Login.login;
-import static org.todolist.Register.confirmpasswd;
-import static org.todolist.Register.passwd;
+import static org.todolist.Register.*;
 import static org.todolist.Taskmenu.*;
 import static org.todolist.Updatetask.updatetask;
 
@@ -45,8 +44,9 @@ public class mainmenu {
                     case 2:
                         String logmsg = login();
                         if (Login.dbConnection()) {
-                            if (Login.passwd.equals(Register.confirmpasswd)) {
+                            if (Login.passwd.equals(confirmpasswd)) {
                                 System.out.println(logmsg);
+                                int userId = Login.getuserid(todousername);
                                 loggedIn = true;
 
                             } else {
@@ -69,6 +69,7 @@ public class mainmenu {
                     int choice2 = sc.nextInt();
                     sc.nextLine();
                     if (choice2 == 1) {
+                        int userId = 0;
                         System.out.println(Addtask.addtask());
 
                     } else {

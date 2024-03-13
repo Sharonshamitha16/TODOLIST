@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="43d7ad69-d8ee-4d64-a7b3-87dd684b3b8f" name="Changes" comment="13-03-2024">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Addtask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Addtask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Login.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Register.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/junk" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/junk" afterDir="false" />
@@ -207,7 +208,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710340919232</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="13-03-2024">
+      <option name="closed" value="true" />
+      <created>1710344546480</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1710344546480</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

@@ -4,65 +4,33 @@ import java.sql.*;
 
 import static org.todolist.Login.todousername;
 import static org.todolist.Register.passwd;
+import static org.todolist.Register.userid;
 import static org.todolist.Taskmenu.sc;
-import static org.todolist.Taskmenu.taskno;
-import static org.todolist.Taskmenu.*;
 
 public class Addtask {
-    public static Object addtask() throws SQLException {
-        System.out.println("enter the no of task");
-        taskno = sc.nextInt();
-        sc.nextLine();
-        System.out.println("enter the task which u wanna add:");
-        task_action = sc.nextLine();
-        boolean taskno = false;
+    public static int addtask() throws SQLException {
+        System.out.println("Enter the task which you want to add:");
+        String task_action = sc.nextLine();
 
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TodoUserdetails", "root", "Sharon@1602");
 
-        String query1 = " select UserRegister.userid, UserRegister.todousername, task.task_action ,task.taskwork ,task.timerecorded from task\n" +
-                "  right join   UserRegister on  UserRegister.userid = task.userid and UserRegister.todousername =task.todousername\n" +
-                "  WHERE UserRegister.todousername = ? AND UserRegister.passwd = ?;\n";
+        String query = "INSERT INTO task ( userid ,task_action, taskwork, timerecorded) VALUES (?, ?, ?, NOW())";
+        PreparedStatement pst = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        pst.setInt(1, userid);
+        pst.setString(2, task_action);
+        pst.setString(3, ""); // Assuming taskwork is empty initially
 
-        PreparedStatement pst1 = con.prepareStatement(query1);
-        pst1.setString(1, todousername);
-        pst1.setString(2, passwd);
-
-
-        ResultSet rs = pst1.executeQuery();
-       // rs = pst1.getGeneratedKeys();
-        //if (rows1 > 0) {
-        if (rs.next()) {
-
-            Timestamp timerecorded = rs.getTimestamp("timerecorded");
-            String query = "insert from the task(task_action, taskwork,timerecorded) values" +
-                    "(?,?,?,NOW());";
-            PreparedStatement pst2 = con.prepareStatement(query);
-            // pst2.setInt(1, rs.getInt(userid));
-            //pst2.setString(2, rs.getString(todousername));
-            pst2.setString(3, task_action);
-            pst2.setString(4, taskwork);
-            pst2.setTimestamp(5, timerecorded);
-            //pst2.setInt(6,taskno);
-
-
-            pst2 = con.prepareStatement(query, Integer.parseInt(String.valueOf(PreparedStatement.RETURN_GENERATED_KEYS)));
-            int rows = pst2.executeUpdate();
-
-
-            int createdtaskno = 0;
-            if (rows > 0) {
-                ResultSet generatedKeys = pst2.getGeneratedKeys();
-                if (generatedKeys.next()) {
-                    createdtaskno = generatedKeys.getInt(1);
-                    System.out.println("Task created successfully with number: " + taskno);
-                }
+        int rowsInserted = pst.executeUpdate();
+        if (rowsInserted > 0) {
+            ResultSet generatedKeys = pst.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                int createdTaskNo = generatedKeys.getInt(1);
+                System.out.println("Task created successfully with number: " + createdTaskNo);
+                return createdTaskNo;
             }
-
-            //}
-            return createdtaskno;
         }
-
-
-        return null;
+        System.out.println("Failed to create task.");
+        return -1; // Return -1 indicating failure
     }
-}
+
+   }
