@@ -7,6 +7,8 @@ import java.util.Scanner;
 import static org.todolist.Deletetask.deletetask;
 import static org.todolist.Displaytask.displaytask;
 import static org.todolist.Login.login;
+import static org.todolist.Register.confirmpasswd;
+import static org.todolist.Register.passwd;
 import static org.todolist.Taskmenu.*;
 import static org.todolist.Updatetask.updatetask;
 
@@ -31,6 +33,7 @@ public class mainmenu {
                         if (regmsg.contains("successfully")) {
                             if (Register.dbConnection()) {
                                 System.out.println(regmsg);
+                                break;
                             } else {
                                 System.out.println("Failed to register db connection lost...");
                             }
@@ -38,12 +41,11 @@ public class mainmenu {
                             System.out.println("Failed to reg..");
 
                         }
-
                         break;
                     case 2:
                         String logmsg = login();
                         if (Login.dbConnection()) {
-                            if ( logmsg.contains("successfully")) {
+                            if (Login.passwd.equals(Register.confirmpasswd)) {
                                 System.out.println(logmsg);
                                 loggedIn = true;
 

@@ -30,16 +30,26 @@ public class Register {
         todousername = scanner.nextLine();
         if (todousername.isEmpty()) {
             System.out.println("please provide username don't leave as blank");
+            return register();
         }
-        System.out.println("Create your Password:");
-        passwd = scanner.nextLine();
-        if (passwd.isEmpty()) {
-            System.out.println("please provide password don't leave as blank");
-        }
+
+           while (true) {
+               System.out.println("Create your Password:");
+               passwd = scanner.nextLine();
+               if (passwd.isEmpty()) {
+                   System.out.println("Please provide password, don't leave it blank.");
+               } else {
+                   break;
+               }
+           }
         while (true) {
             System.out.println("confirm your created password");
             confirmpasswd = scanner.nextLine();
-
+            if (passwd.isEmpty()) {
+                System.out.println("Please provide password, don't leave it blank.");
+            } else {
+                break;
+            }
             if (passwd.equals(confirmpasswd)) {
                 //System.out.println("password matched..");
                 break;

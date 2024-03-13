@@ -4,18 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="43d7ad69-d8ee-4d64-a7b3-87dd684b3b8f" name="Changes" comment="12-03-2024">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Addtask.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Deletetask.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Displaytask.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Updatetask.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/todolist/junk2" afterDir="false" />
+    <list default="true" id="43d7ad69-d8ee-4d64-a7b3-87dd684b3b8f" name="Changes" comment="13-03-2024">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Login.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Register.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Taskmenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Taskmenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/junk" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/junk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/mainmenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/mainmenu.java" afterDir="false" />
     </list>
@@ -207,13 +199,22 @@
       <option name="project" value="LOCAL" />
       <updated>1710267872756</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="13-03-2024">
+      <option name="closed" value="true" />
+      <created>1710340919232</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1710340919232</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="07-03-2024" />
     <MESSAGE value="08-03-2024" />
     <MESSAGE value="12-03-2024" />
-    <option name="LAST_COMMIT_MESSAGE" value="12-03-2024" />
+    <MESSAGE value="13-03-2024" />
+    <option name="LAST_COMMIT_MESSAGE" value="13-03-2024" />
   </component>
 </project>
