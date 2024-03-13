@@ -4,11 +4,10 @@ import java.sql.*;
 import java.util.*;
 
 import static org.todolist.Register.confirmpasswd;
-import static org.todolist.Register.passwd;
-
-
 public class Login {
     static String todousername;
+    static String passwd;
+
 
     public static String login() throws SQLException {
         Scanner scanner = new Scanner(System.in);
@@ -23,7 +22,7 @@ public class Login {
             System.out.println("Retype your password");
             confirmpasswd = scanner.nextLine();
 
-            if (passwd.equals(confirmpasswd)) {
+            if (Login.passwd.equals(Register.confirmpasswd)) {
                 System.out.println("password matched..");
 
             } else {
@@ -32,12 +31,16 @@ public class Login {
             }
 
 
-        } catch (Exception E) {
-            System.out.println("login failed ...");
-        }
-        return "logging in... ";
-    }
 
+
+            return passwd.equals(confirmpasswd) ? "User " + todousername + " logged in successfully." : "log in failed..";
+    } catch (Exception e) {
+            System.out.println("An error occurred during login: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return passwd.equals(confirmpasswd) ? "User " + todousername + " logged in successfully." : "log in failed..";
+
+    }
     public static boolean dbConnection() throws SQLException {
         Connection con = null;
         PreparedStatement pst = null;
@@ -66,7 +69,7 @@ public class Login {
                 pst1 = con.prepareStatement(insertQuery);
                 pst1.setInt(1, rs.getInt("userid"));
 
-                if (Register.passwd.equals(Register.confirmpasswd))
+                if (Login.passwd.equals(Register.confirmpasswd))
                 {
                     int rowsInserted = pst1.executeUpdate();
                     System.out.println(rowsInserted + " row(s) inserted into userlogin");
