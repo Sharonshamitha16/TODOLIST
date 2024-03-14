@@ -3,16 +3,18 @@ package org.todolist;
 import java.sql.*;
 import java.util.*;
 
-import static org.todolist.Register.confirmpasswd;
-import static org.todolist.Register.userid;
+import static org.todolist.Register.*;
 
 public class Login {
+    public static int userid;
     static String todousername;
     static String passwd;
 
-    public static int getuserid(String todousername) {
-        return userid;
-    }
+//    public static int getuserid(String todousername) {
+//        return userid;
+//    }
+
+
     public static String login() throws SQLException {
         Scanner scanner = new Scanner(System.in);
 
@@ -45,7 +47,7 @@ public class Login {
                 }
             }
 
-            if (Login.passwd.equals(Register.confirmpasswd)) {
+            if (Login.passwd.equals(confirmpasswd)) {
                 System.out.println("password matched..");
 
 
@@ -58,6 +60,7 @@ public class Login {
             System.out.println("An error occurred during login: " + e.getMessage());
             e.printStackTrace();
         }
+
         return passwd.equals(confirmpasswd) ? "User " + todousername + " logged in successfully." : "log in failed..";
 
     }
@@ -89,9 +92,12 @@ public class Login {
                 pst1 = con.prepareStatement(insertQuery);
                 pst1.setInt(1, rs.getInt("userid"));
 
-                if (Login.passwd.equals(Register.confirmpasswd)) {
+                if (Login.passwd.equals(confirmpasswd)) {
                     int rowsInserted = pst1.executeUpdate();
                     System.out.println(rowsInserted + " row(s) inserted into userlogin");
+                    System.out.println("todousername: " + todousername);
+                    System.out.println("passwd: " + passwd);
+                    System.out.println("userid" + userid);
                 } else {
                     System.out.println("no rows inserted as passwd is wrong");
                 }
@@ -113,6 +119,7 @@ public class Login {
         }
         return true;
     }
+
 
 
 }

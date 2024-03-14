@@ -1,9 +1,6 @@
 package org.todolist;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Scanner;
 
 public class Register {
@@ -85,6 +82,7 @@ public class Register {
         System.out.println("passwd: " + passwd);
         System.out.println("email: " + email);
         System.out.println("gender: " + gender);
+        System.out.println("userid"+ userid);
 
         return "successfully completed registration...!!!";
     }
@@ -93,12 +91,20 @@ public class Register {
         try {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TodoUserdetails", "root", "Sharon@1602");
             String query = "insert into UserRegister (todousername, passwd, email, gender)values(?,?,?,?);";
-            PreparedStatement pst = con.prepareStatement(query);
+            PreparedStatement pst = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS );
+           // pst.setInt(1, userid);
+
             pst.setString(1, todousername);
+
             pst.setString(2, passwd);
             pst.setString(3, email);
             pst.setString(4, gender);
             int rows = pst.executeUpdate();
+            ResultSet generatedKeys = pst.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                int userId = generatedKeys.getInt(1);
+                System.out.println("Generated user ID: " + userId);
+            }
             con.close();
             return true;
         } catch (SQLException e) {

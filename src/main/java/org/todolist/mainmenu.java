@@ -46,7 +46,6 @@ public class mainmenu {
                         if (Login.dbConnection()) {
                             if (Login.passwd.equals(confirmpasswd)) {
                                 System.out.println(logmsg);
-                                int userId = Login.getuserid(todousername);
                                 loggedIn = true;
 
                             } else {
@@ -69,7 +68,7 @@ public class mainmenu {
                     int choice2 = sc.nextInt();
                     sc.nextLine();
                     if (choice2 == 1) {
-                        int userId = 0;
+
                         System.out.println(Addtask.addtask());
 
                     } else {
@@ -83,7 +82,7 @@ public class mainmenu {
                         } else if (choice2 == 4) {
                             System.out.println(displaytask());
                         } else if (choice2 == 5) {
-                            loggedIn = false; // Log out
+                            loggedIn = false;
                             System.out.println("Logged out successfully.");
                             break;
 
