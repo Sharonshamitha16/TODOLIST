@@ -8,6 +8,27 @@ public class loginexam {
     private String todousername;
     private String passwd;
     private Timestamp datenow;
+    public void login() throws SQLException {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter your Name to login:");
+        todousername = scanner.nextLine();
+
+        System.out.println("Enter your Password to login:");
+        passwd = scanner.nextLine();
+
+
+
+        if (passwd.equals(confirmpasswd)) {
+            System.out.println("password matched..");
+
+        } else {
+            //System.out.println("provide same password..");
+
+        }
+
+    }
+
 
     public void dbConnection(String todousername, String passwd) throws SQLException {
         String url = "jdbc:mysql://localhost:3306/TodoUserdetails";
@@ -47,26 +68,6 @@ public class loginexam {
         }
     }
 
-    public void login() throws SQLException {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Enter your Name to login:");
-        todousername = scanner.nextLine();
-
-        System.out.println("Enter your Password to login:");
-        passwd = scanner.nextLine();
-
-
-
-            if (passwd.equals(confirmpasswd)) {
-                System.out.println("password matched..");
-
-            } else {
-                //System.out.println("provide same password..");
-
-            }
-
-    }
 
     public static void main(String[] args) {
         try {

@@ -6,7 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static org.todolist.Login.todousername;
+
+import static org.todolist.Register.todousername;
 import static org.todolist.Register.userid;
 
 public class Displaytask {

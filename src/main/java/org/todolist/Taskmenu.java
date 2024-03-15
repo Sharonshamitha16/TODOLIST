@@ -5,7 +5,7 @@ import java.sql.*;
 import java.util.*;
 
 
-import static org.todolist.Login.todousername;
+//import static org.todolist.Login.todousername;
 import static org.todolist.Register.userid;
 import static org.todolist.Register.passwd;
 //import static org.todolist.mainmenu.loggedIn;

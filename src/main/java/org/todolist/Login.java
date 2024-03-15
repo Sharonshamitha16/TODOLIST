@@ -1,21 +1,13 @@
 package org.todolist;
 
 import java.sql.*;
-import java.util.*;
-
-import static org.todolist.Register.*;
+import java.util.Scanner;
 
 public class Login {
-    public static int userid;
     static String todousername;
     static String passwd;
 
-//    public static int getuserid(String todousername) {
-//        return userid;
-//    }
-
-
-    public static String login() throws SQLException {
+    public static boolean login() throws SQLException {
         Scanner scanner = new Scanner(System.in);
 
         try {
@@ -23,110 +15,45 @@ public class Login {
             todousername = scanner.nextLine();
             if (todousername.isEmpty()) {
                 System.out.println("Please provide username, don't leave it blank.");
-                return login(); // Prompt again for username
+                return false;
+            }
+
+            System.out.println("Enter your Password to login:");
+            passwd = scanner.next();
+            if (passwd.isEmpty()) {
+                System.out.println("Please provide password, don't leave it blank.");
+                return false;
             }
 
 
-            while (true) {
-                System.out.println("Enter your Password to login:");
-                passwd = scanner.nextLine();
-                if (passwd.isEmpty()) {
-                    System.out.println("Please provide password, don't leave it blank.");
-                } else {
-                    break; // Break the loop if the password is provided
-                }
-            }
-
-            while (true) {
-                System.out.println("Retype your password");
-                confirmpasswd = scanner.nextLine();
-                if (confirmpasswd.isEmpty()) {
-                    System.out.println("Please provide password, don't leave it blank.");
-                } else {
-                    break; // Break the loop if the password is provided
-                }
-            }
-
-            if (Login.passwd.equals(confirmpasswd)) {
-                System.out.println("password matched..");
-
-
+            if (authenticateUser(todousername, passwd)) {
+                System.out.println("Login successful. Welcome, " + todousername + "!");
+                return true;
             } else {
-                System.out.println("Invalid credentials...");
-
+                System.out.println("Invalid credentials. Login failed.");
+                return false;
             }
-            //return passwd.equals(confirmpasswd) ? "User " + todousername + " logged in successfully." : "log in failed..";
         } catch (Exception e) {
             System.out.println("An error occurred during login: " + e.getMessage());
             e.printStackTrace();
+            return false;
         }
-
-        return passwd.equals(confirmpasswd) ? "User " + todousername + " logged in successfully." : "log in failed..";
-
     }
 
-    public static boolean dbConnection() throws SQLException {
-        Connection con = null;
-        PreparedStatement pst = null;
-        PreparedStatement pst1 = null;
+    static boolean authenticateUser(String username, String password) throws SQLException {
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TodoUserdetails", "root", "Sharon@1602")) {
+            String query = "SELECT passwd FROM UserRegister WHERE todousername = ?";
+            try (PreparedStatement pst = con.prepareStatement(query)) {
+                pst.setString(1, username);
+                try (ResultSet rs = pst.executeQuery()) {
+                    if (rs.next()) {
+                        String storedPassword = rs.getString("passwd");
 
-        try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TodoUserdetails", "root", "Sharon@1602");
-
-            String query = "SELECT UserRegister.userid, UserLogin.datenow " +
-                    "FROM UserRegister " +
-                    "LEFT JOIN UserLogin ON UserRegister.userid = UserLogin.userid " +
-                    "WHERE UserRegister.todousername = ? AND UserRegister.passwd = ?";
-
-            pst = con.prepareStatement(query);
-            pst.setString(1, todousername);
-            pst.setString(2, passwd);
-
-            ResultSet rs = pst.executeQuery();
-
-            if (rs.next()) {
-
-                Timestamp datenow = rs.getTimestamp("datenow");
-
-                String insertQuery = "INSERT INTO UserLogin (userid, datenow) VALUES (?, NOW())  ";
-                pst1 = con.prepareStatement(insertQuery);
-                pst1.setInt(1, rs.getInt("userid"));
-
-                if (Login.passwd.equals(confirmpasswd)) {
-                    int rowsInserted = pst1.executeUpdate();
-                    System.out.println(rowsInserted + " row(s) inserted into userlogin");
-                    System.out.println("todousername: " + todousername);
-                    System.out.println("passwd: " + passwd);
-                    System.out.println("userid" + userid);
-                } else {
-                    System.out.println("no rows inserted as passwd is wrong");
+                        return password.equals(storedPassword);
+                    }
                 }
-
-            }
-        } catch (SQLException e) {
-            System.out.println("Error executing SQL statement: " + e.getMessage());
-            e.printStackTrace();
-        } finally {
-            if (pst1 != null) {
-                pst1.close();
-            }
-            if (pst != null) {
-                pst.close();
-            }
-            if (con != null) {
-                con.close();
             }
         }
-        return true;
+        return false;
     }
-
-
-
 }
-
-
-
-
-    
-
-

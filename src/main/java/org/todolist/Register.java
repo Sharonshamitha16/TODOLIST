@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.Scanner;
 
 public class Register {
+    //public static Object todousername;
     static int userid;
     static String todousername;
     static String passwd;

@@ -1,22 +1,27 @@
 package org.todolist;
 
-
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
 
 import static org.todolist.Deletetask.deletetask;
 import static org.todolist.Displaytask.displaytask;
-import static org.todolist.Login.login;
 import static org.todolist.Register.*;
+import static org.todolist.Register.passwd;
+import static org.todolist.Register.todousername;
 import static org.todolist.Taskmenu.*;
 import static org.todolist.Updatetask.updatetask;
+import static sun.security.jgss.GSSUtil.login;
 
 public class mainmenu {
     static boolean loggedIn = false;
+
     public static void main(String[] args) throws SQLException {
         Scanner sc = new Scanner(System.in);
         boolean exit = false;
+
         System.out.println("Welcome to the to do list command line app");
+
         while (!exit) {
             if (!loggedIn) {
                 System.out.println("Enter 1 to register ");
@@ -26,6 +31,7 @@ public class mainmenu {
 
                 int choice1 = sc.nextInt();
                 sc.nextLine();
+
                 switch (choice1) {
                     case 1:
                         String regmsg = Register.register();
@@ -38,68 +44,61 @@ public class mainmenu {
                             }
                         } else {
                             System.out.println("Failed to reg..");
-
                         }
                         break;
+
                     case 2:
-                        String logmsg = login();
-                        if (Login.dbConnection()) {
-                            if (Login.passwd.equals(confirmpasswd)) {
-                                System.out.println(logmsg);
-                                loggedIn = true;
-
-                            } else {
-                                loggedIn = false;
-                                System.out.println("Login failed. Please try again.");
-                            }
-                        } else {
-                            System.out.println("Database connection failed..");
+                        // Perform login
+                        if (Login.login()) {
+                            loggedIn = true;
                         }
                         break;
+
                     case 3:
                         exit = true;
-                        System.out.println("visit again ...");
+                        System.out.println("Visit again ...");
                         break;
+
                     default:
-                        throw new IllegalStateException("Invalid choice. Please try again." + choice1);
+                        throw new IllegalStateException("Invalid choice. Please try again: " + choice1);
                 }
-                if (loggedIn) {
-                    System.out.println(task_action());
-                    int choice2 = sc.nextInt();
-                    sc.nextLine();
-                    if (choice2 == 1) {
-
-                        System.out.println(Addtask.addtask());
-
-                    } else {
-                        if (choice2 == 2) {
-                            System.out.println(updatetask());
-                            System.out.println(deletetask());
-                            System.out.println(displaytask());
-                        } else if (choice2 == 3) {
-                            System.out.println(deletetask());
-                            System.out.println(displaytask());
-                        } else if (choice2 == 4) {
-                            System.out.println(displaytask());
-                        } else if (choice2 == 5) {
-                            loggedIn = false;
-                            System.out.println("Logged out successfully.");
-                            break;
-
-                        } else {
-                            throw new IllegalStateException("Unexpected value: " + choice2);
-
-                        }
-
-                    }
-                }
-
             }
+            if (loggedIn) {
+                System.out.println(task_action());
+                int choice2 = sc.nextInt();
+                sc.nextLine();
 
+                switch (choice2) {
+                    case 1:
+                        System.out.println(Addtask.addtask());
+                        break;
 
+                    case 2:
+                        System.out.println(updatetask());
+                        System.out.println(deletetask());
+                        System.out.println(displaytask());
+                        break;
+
+                    case 3:
+                        System.out.println(deletetask());
+                        System.out.println(displaytask());
+                        break;
+
+                    case 4:
+                        System.out.println(displaytask());
+                        break;
+
+                    case 5:
+                        loggedIn = false;
+                        System.out.println("Logged out successfully.");
+                        break;
+
+                    default:
+                        throw new IllegalStateException("Unexpected value: " + choice2);
+                }
+            }
         }
-
     }
+
+
 }
-
-

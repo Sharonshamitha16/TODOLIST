@@ -3,9 +3,8 @@ package org.todolist;
 import java.io.Serializable;
 import java.sql.*;
 
-import static org.todolist.Login.todousername;
-import static org.todolist.Register.passwd;
-import static org.todolist.Register.userid;
+//import static org.todolist.Login.todousername;
+import static org.todolist.Register.*;
 import static org.todolist.Taskmenu.task_action;
 import static org.todolist.Taskmenu.taskwork;
 
