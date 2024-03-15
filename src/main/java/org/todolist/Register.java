@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.Scanner;
 
 public class Register {
+    //public static String queryfromreg;
     //public static Object todousername;
     static int userid;
     static String todousername;
@@ -83,32 +84,36 @@ public class Register {
         System.out.println("passwd: " + passwd);
         System.out.println("email: " + email);
         System.out.println("gender: " + gender);
-        System.out.println("userid"+ userid);
+           //System.out.println("userid"+ userId);
 
         return "successfully completed registration...!!!";
     }
 
     public static boolean dbConnection() throws SQLException {
+
+        int userId;
         try {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TodoUserdetails", "root", "Sharon@1602");
-            String query = "insert into UserRegister (todousername, passwd, email, gender)values(?,?,?,?);";
-            PreparedStatement pst = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS );
-           // pst.setInt(1, userid);
+            String queryfromreg = "insert into UserRegister (todousername, passwd, email, gender)values(?,?,?,?);";
+            PreparedStatement pstfromreg = con.prepareStatement(queryfromreg, Statement.RETURN_GENERATED_KEYS);
+            // pst.setInt(1, userid);
 
-            pst.setString(1, todousername);
+            pstfromreg.setString(1, todousername);
 
-            pst.setString(2, passwd);
-            pst.setString(3, email);
-            pst.setString(4, gender);
-            int rows = pst.executeUpdate();
-            ResultSet generatedKeys = pst.getGeneratedKeys();
+            pstfromreg.setString(2, passwd);
+            pstfromreg.setString(3, email);
+            pstfromreg.setString(4, gender);
+            int rows = pstfromreg.executeUpdate();
+            ResultSet generatedKeys = pstfromreg.getGeneratedKeys();
             if (generatedKeys.next()) {
-                int userId = generatedKeys.getInt(1);
+                userId = generatedKeys.getInt(1);
                 System.out.println("Generated user ID: " + userId);
+
             }
             con.close();
             return true;
-        } catch (SQLException e) {
+        }
+        catch(SQLException e){
             throw new RuntimeException(e);
         }
 

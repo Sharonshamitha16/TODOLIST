@@ -4,18 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="43d7ad69-d8ee-4d64-a7b3-87dd684b3b8f" name="Changes" comment="13-03-2024">
+    <list default="true" id="43d7ad69-d8ee-4d64-a7b3-87dd684b3b8f" name="Changes" comment="15-03-2024">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Addtask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Addtask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Deletetask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Deletetask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Displaytask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Displaytask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Login.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Register.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Taskmenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Taskmenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Updatetask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Updatetask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/junk" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/junk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/loginexam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/loginexam.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/mainmenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/mainmenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -238,7 +231,23 @@
       <option name="project" value="LOCAL" />
       <updated>1710439852837</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="15-03-2024">
+      <option name="closed" value="true" />
+      <created>1710517208969</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1710517208969</updated>
+    </task>
+    <task id="LOCAL-00011" summary="15-03-2024">
+      <option name="closed" value="true" />
+      <created>1710520383435</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1710520383436</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -263,6 +272,7 @@
     <MESSAGE value="08-03-2024" />
     <MESSAGE value="12-03-2024" />
     <MESSAGE value="13-03-2024" />
-    <option name="LAST_COMMIT_MESSAGE" value="13-03-2024" />
+    <MESSAGE value="15-03-2024" />
+    <option name="LAST_COMMIT_MESSAGE" value="15-03-2024" />
   </component>
 </project>

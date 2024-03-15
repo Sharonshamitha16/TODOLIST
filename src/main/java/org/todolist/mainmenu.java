@@ -11,7 +11,7 @@ import static org.todolist.Register.passwd;
 import static org.todolist.Register.todousername;
 import static org.todolist.Taskmenu.*;
 import static org.todolist.Updatetask.updatetask;
-import static sun.security.jgss.GSSUtil.login;
+//import static sun.security.jgss.GSSUtil.login;
 
 public class mainmenu {
     static boolean loggedIn = false;
@@ -34,9 +34,9 @@ public class mainmenu {
 
                 switch (choice1) {
                     case 1:
-                        String regmsg = Register.register();
+                        String regmsg = register();
                         if (regmsg.contains("successfully")) {
-                            if (Register.dbConnection()) {
+                            if (dbConnection()) {
                                 System.out.println(regmsg);
                                 break;
                             } else {
@@ -48,9 +48,14 @@ public class mainmenu {
                         break;
 
                     case 2:
-                        // Perform login
+
+
+                        // Perform database connection and authentication
                         if (Login.login()) {
                             loggedIn = true;
+                            System.out.println("User " + todousername + " logged in successfully.");
+                        } else {
+                            System.out.println("Invalid credentials. Login failed.");
                         }
                         break;
 
@@ -63,6 +68,7 @@ public class mainmenu {
                         throw new IllegalStateException("Invalid choice. Please try again: " + choice1);
                 }
             }
+
             if (loggedIn) {
                 System.out.println(task_action());
                 int choice2 = sc.nextInt();
