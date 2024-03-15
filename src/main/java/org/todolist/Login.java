@@ -42,18 +42,27 @@ public class Login {
 
     static boolean authenticateUser(String username, String password) throws SQLException {
         try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TodoUserdetails", "root", "Sharon@1602")) {
-            String query = "SELECT passwd FROM UserRegister WHERE todousername = ?";
+            String query = "SELECT passwd , userid FROM UserRegister WHERE todousername = ?";
             try (PreparedStatement pst = con.prepareStatement(query)) {
                 pst.setString(1, username);
+                String storedPassword = null;
                 try (ResultSet rs = pst.executeQuery()) {
                     if (rs.next()) {
-                        String storedPassword = rs.getString("passwd");
-
-                        return password.equals(storedPassword);
+                        storedPassword = rs.getString("passwd");
+                        String insertLoginQuery = "INSERT INTO UserLogin (userid, datenow) VALUES (?, CURRENT_TIMESTAMP)";
+                        try (PreparedStatement insertPst = con.prepareStatement(insertLoginQuery)) {
+                            insertPst.setInt(1, rs.getInt("userid"));
+                            int rowsInserted = insertPst.executeUpdate();
+                            System.out.println(rowsInserted + " row(s) inserted into UserLogin.");
+                        }
+                    } else {
+                        // User does not exist or invalid credentials
+                        System.out.println("Invalid credentials. Login failed.");
                     }
+                }
+                return password.equals(storedPassword);
+            }
                 }
             }
         }
-        return false;
-    }
-}
+
