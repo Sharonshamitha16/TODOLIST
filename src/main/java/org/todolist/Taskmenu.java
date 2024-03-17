@@ -1,15 +1,14 @@
 package org.todolist;
 
-import java.io.Serializable;
-import java.sql.*;
-import java.util.*;
+import org.todolist.model.User;
 
+import java.sql.Timestamp;
+import java.util.Scanner;
 
-//import static org.todolist.Login.todousername;
-import static org.todolist.Register.userid;
-import static org.todolist.Register.passwd;
+import static org.todolist.Register.*;
+
+//import static org.todolist.Register.userid;
 //import static org.todolist.mainmenu.loggedIn;
-
 
 
 public class Taskmenu {
@@ -17,6 +16,8 @@ public class Taskmenu {
     static String task_action;
     static int taskno;
     static String taskwork;
+    User user = new User(getUserId(), todousername,
+            passwd, email, gender);
     private Timestamp timerecorded;
 
 //    public void settask_action() {
@@ -39,9 +40,19 @@ public class Taskmenu {
 //        return this.task_action();
 //    }
 
-    public String gettaskwork() {
-        return this.gettaskwork();
+    public String getTaskwork() {
+        return taskwork();
     }
+    public void setTaskwork(){
+        this.taskwork= taskwork();
+    }
+
+    private String taskwork() {
+        return  taskwork;
+    }
+
+
+
 
 
     public static String task_action() {

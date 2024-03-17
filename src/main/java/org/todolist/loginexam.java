@@ -2,7 +2,7 @@ package org.todolist;
 import java.sql.*;
 import java.util.Scanner;
 
-import static org.todolist.Register.confirmpasswd;
+
 
 public class loginexam {
     private String todousername;
@@ -19,13 +19,13 @@ public class loginexam {
 
 
 
-        if (passwd.equals(confirmpasswd)) {
-            System.out.println("password matched..");
-
-        } else {
-            //System.out.println("provide same password..");
-
-        }
+//        if (passwd.equals(confirmpasswd)) {
+//            System.out.println("password matched..");
+//
+//        } else {
+//            //System.out.println("provide same password..");
+//
+//        }
 
     }
 

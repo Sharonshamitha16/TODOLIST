@@ -1,9 +1,7 @@
 package org.todolist;
 
-import java.io.Serializable;
 import java.sql.*;
 
-//import static org.todolist.Login.todousername;
 import static org.todolist.Register.*;
 import static org.todolist.Taskmenu.task_action;
 import static org.todolist.Taskmenu.taskwork;
@@ -31,7 +29,7 @@ public class Deletetask {
                 Timestamp timerecorded = rs.getTimestamp("timerecorded");
                 query3 = "DELETE FROM TASK WHERE task_action = ? and taskno = ? and userid =? and todousername =?";
                 PreparedStatement pst2 = con.prepareStatement(query3);
-                pst2.setInt(1, rs.getInt(userid));
+                pst2.setInt(1, rs.getInt(getUserId()));
                 pst2.setString(2, rs.getString(todousername));
                 pst2.setString(3, task_action);
                 pst2.setString(4, taskwork);

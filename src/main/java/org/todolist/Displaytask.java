@@ -6,9 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
 import static org.todolist.Register.todousername;
-import static org.todolist.Register.userid;
+
 
 public class Displaytask {
     public static Serializable displaytask() {
@@ -17,7 +16,7 @@ public class Displaytask {
         Connection con = null;
         try (PreparedStatement statement = con.prepareStatement(query4)) {
             statement.setString(1, todousername);
-            statement.setInt(2, userid);
+            statement.setInt(2, Register.getUserId());
 
             try (ResultSet rs = statement.executeQuery()) {
                 if (rs.next()) {

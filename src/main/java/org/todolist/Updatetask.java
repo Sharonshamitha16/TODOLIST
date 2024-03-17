@@ -28,7 +28,7 @@ public class Updatetask {
                 Timestamp timerecorded = rs.getTimestamp("timerecorded");
                 String query3 = "UPDATE task SET column1 = task_action , column2 = taskwork WHERE condition_column = ?";
                 PreparedStatement pst2 = con.prepareStatement(query2);
-                pst2.setInt(1, rs.getInt(userid));
+                pst2.setInt(1, rs.getInt(getUserId()));
                 pst2.setString(2, rs.getString(todousername));
 
 

@@ -1,15 +1,12 @@
 package org.todolist;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
 
 import static org.todolist.Deletetask.deletetask;
 import static org.todolist.Displaytask.displaytask;
 import static org.todolist.Register.*;
-import static org.todolist.Register.passwd;
-import static org.todolist.Register.todousername;
-import static org.todolist.Taskmenu.*;
+import static org.todolist.Taskmenu.task_action;
 import static org.todolist.Updatetask.updatetask;
 //import static sun.security.jgss.GSSUtil.login;
 
@@ -34,17 +31,15 @@ public class mainmenu {
 
                 switch (choice1) {
                     case 1:
-                        String regmsg = register();
+                        String regmsg = (String) register();
                         if (regmsg.contains("successfully")) {
-                            if (dbConnection()) {
+
                                 System.out.println(regmsg);
                                 break;
                             } else {
                                 System.out.println("Failed to register db connection lost...");
                             }
-                        } else {
-                            System.out.println("Failed to reg..");
-                        }
+
                         break;
 
                     case 2:
@@ -77,7 +72,14 @@ public class mainmenu {
                 switch (choice2) {
                     case 1:
                         System.out.println(Addtask.addtask());
+                        int result = Addtask.addtask();
+                        if (result != -1) {
+                            System.out.println("Task added successfully.");
+                        } else {
+                            System.out.println("Failed to add task. Please try again later.");
+                        }
                         break;
+                        
 
                     case 2:
                         System.out.println(updatetask());

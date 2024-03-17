@@ -3,7 +3,7 @@ package org.todolist;
 import java.sql.*;
 import java.util.Scanner;
 
-import static org.todolist.Register.passwd;
+
 
 public class Login {
     static String todousername;
