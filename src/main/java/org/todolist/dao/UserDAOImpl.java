@@ -17,14 +17,10 @@ public class UserDAOImpl implements UserDAO {
         return DriverManager.getConnection("jdbc:mysql://localhost:3306/TodoUserdetails", "root", "Sharon@1602");
     }
 
-    @Override
-    public int registerUser(String todousername, String passwd, String email, String gender) throws SQLException {
-        return 0;
-    }
 
     @Override
-    public int register(String username, String password, String email, String gender) throws SQLException {
-        String query = "INSERT INTO UserRegister (todousername, passwd, email, gender) VALUES (?, ?, ?, ?);";
+    public int register(String todousrname, String password, String email, String gender) throws SQLException {
+        String query = "INSERT INTO UserRegisternew (todousername, passwd, email, gender) VALUES (?, ?, ?, ?);";
         try (Connection con = getConnection();
              PreparedStatement pst = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 

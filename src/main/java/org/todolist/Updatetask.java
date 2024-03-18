@@ -8,42 +8,58 @@ import static org.todolist.Taskmenu.*;
 
 public class Updatetask {
     public static String updatetask() throws SQLException {
+        String resultMessage = "Task update failed."; // Default message
 
         System.out.println("Enter the task   which you wanna update");
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TodoUserdetails", "root", "Sharon@1602");
 
-        String query2 = " select UserRegister.userid, UserRegister.todousername, task.task_action ,task.taskwork ,task.timerecorded from task\n" +
-                "  right join   UserRegister on  UserRegister.userid = task.userid and UserRegister.todousername =task.todousername\n" +
-                "  WHERE UserRegister.todousername = ? AND UserRegister.passwd = ?;\n";
+//        String query2= "SELECT UserRegisternew.userid, tasknew.tasknew_action, tasknew.tasknewwork, tasknew.timerecorded " +
+//                "FROM tasknew " +
+//                "INNER JOIN UserRegisternew ON tasknew.userid = UserRegisternew.userid";
+//
+//        String query2 = " select UserRegisternew.userid, UserRegisternew.todousername, task.task_action ,task.taskwork ,task.timerecorded from task\n" +
+//                "  right join   UserRegisternew on  UserRegisternew.userid = task.userid and UserRegisternew.todousername =task.todousername\n" +
+//                "  WHERE UserRegisternew.todousername = ? AND UserRegisternew.passwd = ?;\n";
+//
+//        PreparedStatement pst1 = con.prepareStatement(query2);
+//        pst1.setString(1, todousername);
+//
+//        pst1.setString(2, passwd);
+//        int rows1 = pst1.executeUpdate(query2);
+        String selectQuery = "SELECT userid, taskwork, timerecorded FROM task WHERE todousername = ? AND passwd = ?";
+        String updateQuery = "UPDATE task SET taskwork = ?, timerecorded = ? WHERE userid = ? AND todousername = ?";
 
-        PreparedStatement pst1 = con.prepareStatement(query2);
-        pst1.setString(1, todousername);
+        try (
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TodoUserdetails", "root", "Sharon@1602");
 
-        pst1.setString(2, passwd);
-        int rows1 = pst1.executeUpdate(query2);
+                PreparedStatement selectStmt = con.prepareStatement(selectQuery);
+                PreparedStatement updateStmt = con.prepareStatement(updateQuery);
+        ) {
+            selectStmt.setString(1, todousername);
+            selectStmt.setString(2, passwd);
 
-        try (ResultSet rs = pst1.executeQuery()) {
-            if (rs.next()) {
+            try (ResultSet rs = selectStmt.executeQuery()) {
+                if (rs.next()) {
+                    // Assuming you are getting new task details from somewhere
+                    String newTaskWork = "New Task Work"; // Example update, get this from user input or method argument
+                    Timestamp newTimeRecorded = new Timestamp(System.currentTimeMillis()); // Example timestamp, adjust as necessary
 
-                Timestamp timerecorded = rs.getTimestamp("timerecorded");
-                String query3 = "UPDATE task SET column1 = task_action , column2 = taskwork WHERE condition_column = ?";
-                PreparedStatement pst2 = con.prepareStatement(query2);
-                pst2.setInt(1, rs.getInt(getUserId()));
-                pst2.setString(2, rs.getString(todousername));
+                    updateStmt.setString(1, newTaskWork);
+                    updateStmt.setTimestamp(2, newTimeRecorded);
+                    updateStmt.setInt(3, rs.getInt("userid"));
+                    updateStmt.setString(4, todousername);
 
+                    int rowsAffected = updateStmt.executeUpdate();
+                    if (rowsAffected > 0) {
+                        resultMessage = "Task has been updated successfully.";
+                        return "Task has been updated successfully you're task number is" + tasknewno;
+                    }
+                }
+            } catch (SQLException e) {
 
-                pst2.setString(3, task_action);
-                pst2.setString(4, taskwork);
-                pst2.setTimestamp(5, timerecorded);
-
-                pst2 = con.prepareStatement(query3);
-                int rows = pst2.executeUpdate(query2);
-
+                e.printStackTrace(); // For debugging, consider logging the error
             }
         }
 
-
-        return "Task has been updated successfully you're task number is" + taskno;
+        return resultMessage;
     }
-
 }

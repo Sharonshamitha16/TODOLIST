@@ -7,7 +7,9 @@ import java.sql.*;
 import java.util.Scanner;
 
 public class Register {
+
     public static String todousername;
+
     public static String passwd;
     public static String email;
     public static String gender;
@@ -62,7 +64,7 @@ public class Register {
     }
 
     public static int getUserId() {
-        return userId;
+        return  userId;
     }
 
 

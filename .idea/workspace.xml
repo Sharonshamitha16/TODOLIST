@@ -4,18 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="43d7ad69-d8ee-4d64-a7b3-87dd684b3b8f" name="Changes" comment="16-03-2024">
-      <change afterPath="$PROJECT_DIR$/src/main/java/GenerationType/AUTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/todolist/dao/UserDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/todolist/dao/UserDAOImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/todolist/model/Entity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/todolist/model/GeneratedValue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/todolist/model/Id.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/todolist/model/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/todolist/reg junk.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+    <list default="true" id="43d7ad69-d8ee-4d64-a7b3-87dd684b3b8f" name="Changes" comment="18-03-2024">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Addtask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Addtask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Deletetask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Deletetask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Displaytask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Displaytask.java" afterDir="false" />
@@ -23,7 +13,8 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Register.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Taskmenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Taskmenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Updatetask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Updatetask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/junk" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/junk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/dao/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/dao/UserDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/dao/UserDAOImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/loginexam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/loginexam.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/mainmenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/mainmenu.java" afterDir="false" />
     </list>
@@ -286,7 +277,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710529550307</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="18-03-2024">
+      <option name="closed" value="true" />
+      <created>1710700556537</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1710700556537</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -313,6 +312,7 @@
     <MESSAGE value="13-03-2024" />
     <MESSAGE value="15-03-2024" />
     <MESSAGE value="16-03-2024" />
-    <option name="LAST_COMMIT_MESSAGE" value="16-03-2024" />
+    <MESSAGE value="18-03-2024" />
+    <option name="LAST_COMMIT_MESSAGE" value="18-03-2024" />
   </component>
 </project>

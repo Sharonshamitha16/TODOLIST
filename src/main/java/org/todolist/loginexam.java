@@ -36,10 +36,10 @@ public class loginexam {
         String DBpassword = "Sharon@1602";
 
         try (Connection con = DriverManager.getConnection(url, DBusername, DBpassword)) {
-            // Check if the login credentials exist in UserRegister
-            String query = "SELECT UserRegister.userid, UserLogin.datenow " +
-                    "FROM UserRegister LEFT JOIN UserLogin ON UserRegister.userid = UserLogin.userid " +
-                    "WHERE UserRegister.todousername = ? AND UserRegister.passwd = ?";
+            // Check if the login credentials exist in UserRegisternew
+            String query = "SELECT UserRegisternew.userid, UserLoginnew.datenow " +
+                    "FROM UserRegisternew LEFT JOIN UserLoginnew ON UserRegisternew.userid = UserLoginnew.userid " +
+                    "WHERE UserRegisternew.todousername = ? AND UserRegisternew.passwd = ?";
 
             try (PreparedStatement pst = con.prepareStatement(query)) {
                 pst.setString(1, todousername);
@@ -47,17 +47,17 @@ public class loginexam {
 
                 try (ResultSet resultSet = pst.executeQuery()) {
                     if (resultSet.next()) {
-                        // User exists in UserRegister, login successful
+                        // User exists in UserRegisternew, login successful
                         System.out.println("Logged in successfully!");
                         Timestamp datenow = resultSet.getTimestamp("datenow");
                         // You can retrieve datenow from the ResultSet and use it as needed
 
-                        // Optionally, you can insert a record into UserLogin with login timestamp
-                        String insertLoginQuery = "INSERT INTO UserLogin (userid, datenow) VALUES (?, CURRENT_TIMESTAMP)";
+                        // Optionally, you can insert a record into UserLoginnew with login timestamp
+                        String insertLoginQuery = "INSERT INTO UserLoginnew (userid, datenow) VALUES (?, CURRENT_TIMESTAMP)";
                         try (PreparedStatement insertPst = con.prepareStatement(insertLoginQuery)) {
                             insertPst.setInt(1, resultSet.getInt("userid"));
                             int rowsInserted = insertPst.executeUpdate();
-                            System.out.println(rowsInserted + " row(s) inserted into UserLogin.");
+                            System.out.println(rowsInserted + " row(s) inserted into UserLoginnew.");
                         }
                     } else {
                         // User does not exist or invalid credentials

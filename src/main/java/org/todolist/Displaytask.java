@@ -12,6 +12,8 @@ import static org.todolist.Register.todousername;
 public class Displaytask {
     public static Serializable displaytask() {
         System.out.println("Enter the task number which you wanna display");
+       // String query4 = "select tasknewaction from tasknew where todousername =? and userid =  ?";
+
         String query4 = "select taskaction from task where todousername =? and userid =  ?";
         Connection con = null;
         try (PreparedStatement statement = con.prepareStatement(query4)) {

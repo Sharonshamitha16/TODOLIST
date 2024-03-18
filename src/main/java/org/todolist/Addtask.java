@@ -5,17 +5,31 @@ import java.sql.*;
 public class Addtask {
     public static int addtask() throws SQLException {
         System.out.println("Enter the task which you want to add:");
-        String task_work = Taskmenu.sc.nextLine();
+        String tasknew_work = Taskmenu.sc.nextLine();
 
-        int userId = Register.getUserId(); // Retrieve userId from Register class
+        int userId = Register.getUserId();
 
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TodoUserdetails", "root", "Sharon@1602");
-        String query = "INSERT INTO task (userid, task_action, taskwork, timerecorded) VALUES (?, ?, ?, NOW())";
+        String query = "INSERT INTO tasknew (userid,todousername, tasknew_action, tasknewwork, timerecorded) VALUES (?,?, ?, ?, NOW())";
+//        String query1 = "SELECT UserRegisternew.userid, tasknew.tasknew_action, tasknew.tasknewwork, tasknew.timerecorded " +
+//                "FROM tasknew " +
+//                "Right JOIN UserRegisternew ON tasknew.userid = UserRegisternew.userid and UserRegisternew.todousername =tasknew.todousername";
 
+
+//        String query1 = " select UserRegisternew.userid, UserRegisternew.todousername, task.task_action ,task.taskwork ,task.timerecorded from task\n" +
+//                "  right join   UserRegister on  UserRegister.userid = task.userid and UserRegisternew.todousername =task.todousername\n" +
+//                "  WHERE  UserRegisternew.passwd = ?;\n";
+//
+//
+//        PreparedStatement selectpst = con.prepareStatement(query1,Statement.RETURN_GENERATED_KEYS);
+       // ResultSet rs1 = selectpst.executeQuery();
         try (PreparedStatement pst = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-            pst.setInt(1, userId);
-            pst.setString(2, Taskmenu.task_action);
-            pst.setString(3, task_work);
+           //
+            pst.setInt(1, Register.getUserId());
+            pst.setString(2,Register.todousername);
+            pst.setString(3, Taskmenu.tasknew_action);
+            pst.setString(4 , tasknew_work);
+
 
             int rowsInserted = pst.executeUpdate();
             if (rowsInserted > 0) {
@@ -36,6 +50,7 @@ public class Addtask {
         System.out.println("Failed to create task.");
         return -1;
     }
+
 
 
 }
