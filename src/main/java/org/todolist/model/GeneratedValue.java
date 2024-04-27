@@ -1,2 +1,4 @@
-package org.todolist.model;public @interface GeneratedValue {
-}
+//package org.todolist.model;
+//public @interface GeneratedValue {
+//
+//}

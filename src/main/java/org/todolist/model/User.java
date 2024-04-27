@@ -1,9 +1,6 @@
 package org.todolist.model;
 public class User {
     private int userid ;// Change id to userid
-
-
-
     private String todousername;
     private String passwd;
     private String confirmpasswd;
@@ -23,27 +20,28 @@ public class User {
 
 
     // Getters and setters for each field
-    public int getUserid() { return userid; } // Change getId to getUserid
-    public void setUserid(int userid) { this.userid = userid; } // Change setId to setUserid
-
-    public String getTodousername() { return todousername; }
-    public void setTodousername(String todousername) { this.todousername = todousername; }
-
-    public String getPasswd() { return passwd; }
-    public void setPasswd(String passwd) { this.passwd = passwd; }
-
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
-
-    public String getGender() { return gender; }
-    public void setGender(String gender) { this.gender = gender; }
-
-
-    public String getConfirmpasswd() {
-        return confirmpasswd;
-    }
-
-    public void setConfirmpasswd(String confirmpasswd) {
-        this.confirmpasswd = confirmpasswd;
-    }
+//    public int getUserid() { return userid; } // Change getId to getUserid
+//    public void setUserid(int userid) { this.userid = userid; } // Change setId to setUserid
+//
+//    public String getTodousername() { return todousername; }
+//    public void setTodousername(String todousername) { this.todousername = todousername; }
+//
+//    public String getPasswd() { return passwd; }
+//    public void setPasswd(String passwd) { this.passwd = passwd; }
+//
+//    public String getEmail() { return email; }
+//
+//    public void setEmail(String email) { this.email = email; }
+//
+//    public String getGender() { return gender; }
+//    public void setGender(String gender) { this.gender = gender; }
+//
+//
+//    public String getConfirmpasswd() {
+//        return confirmpasswd;
+//    }
+//
+//    private void setConfirmpasswd(String confirmpasswd) {
+//        this.confirmpasswd = confirmpasswd;
+//    }
 }

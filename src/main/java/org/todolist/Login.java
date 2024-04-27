@@ -2,9 +2,6 @@ package org.todolist;
 
 import java.sql.*;
 import java.util.Scanner;
-
-
-
 public class Login {
     static String todousername;
     static String passwd;
@@ -28,9 +25,18 @@ public class Login {
             }
 
 
-            if (authenticateUser(todousername, passwd)) {
+            if ( authenticateUser(todousername, passwd)) {
                 System.out.println("Login successful. Welcome, " + todousername + "!");
+                //System.out.println("task number is:"+createdTaskNo);
+                if (hasTasks(todousername)) {
+                    // Call the updateTask method to print task number
+                    int createdTaskNo = Addtask.addtask();
+                    System.out.println("Your task number is: " + createdTaskNo);
+                } else {
+                    System.out.println("New user! To get a task number, create a task.");
+                }
                 return true;
+
             } else {
                 System.out.println("Invalid credentials. Login failed.");
                 return false;
@@ -42,7 +48,7 @@ public class Login {
         }
     }
 
-    static boolean authenticateUser(String todousername, String password) throws SQLException {
+    static boolean authenticateUser(String todousername, String passwd) throws SQLException {
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TodoUserdetails", "root", "Sharon@1602");
         String query = "SELECT passwd , userid FROM UserRegisternew WHERE todousername = ?";
         PreparedStatement pst = con.prepareStatement(query);
@@ -75,7 +81,24 @@ public class Login {
             System.out.println("Invalid credentials. Login failed.");
         }
 
-        return password.equals(storedPassword);
+        return passwd.equals(storedPassword);
     }
 
+
+
+
+static boolean hasTasks(String todousername) throws SQLException {
+    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TodoUserdetails", "root", "Sharon@1602");
+    String query = "SELECT tasknewno AS taskCount FROM tasknew WHERE todousername = ?";
+    PreparedStatement pst = con.prepareStatement(query);
+    pst.setString(1, todousername);
+    ResultSet rs = pst.executeQuery();
+
+    if (rs.next()) {
+        int taskCount = rs.getInt("taskCount");
+        return taskCount > 0;
+    }
+
+    return false;
+}
 }

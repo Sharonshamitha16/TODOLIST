@@ -1,13 +1,9 @@
 package org.todolist.dao;
 
 
-
 import org.todolist.Register;
 
 import java.sql.*;
-
-import static org.todolist.Register.passwd;
-import static org.todolist.Register.todousername;
 
 
 
@@ -19,7 +15,7 @@ public class UserDAOImpl implements UserDAO {
 
 
     @Override
-    public int register(String todousrname, String password, String email, String gender) throws SQLException {
+    public int register(String todousername, String passwd, String email, String gender) throws SQLException {
         String query = "INSERT INTO UserRegisternew (todousername, passwd, email, gender) VALUES (?, ?, ?, ?);";
         try (Connection con = getConnection();
              PreparedStatement pst = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {

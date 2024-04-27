@@ -1,4 +1,5 @@
-package org.todolist.model;
-
-public @interface Entity {
-}
+//package org.todolist.model;
+//
+//public @interface Entity {
+//
+//}

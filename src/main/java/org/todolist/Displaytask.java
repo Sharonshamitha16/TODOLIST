@@ -1,21 +1,18 @@
 package org.todolist;
 
 import java.io.Serializable;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 import static org.todolist.Register.todousername;
 
 
 public class Displaytask {
-    public static Serializable displaytask() {
+    public static Serializable displaytask() throws SQLException {
         System.out.println("Enter the task number which you wanna display");
        // String query4 = "select tasknewaction from tasknew where todousername =? and userid =  ?";
 
         String query4 = "select taskaction from task where todousername =? and userid =  ?";
-        Connection con = null;
+        Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/TodoUserdetails", "root", "Sharon@1602");
         try (PreparedStatement statement = con.prepareStatement(query4)) {
             statement.setString(1, todousername);
             statement.setInt(2, Register.getUserId());
