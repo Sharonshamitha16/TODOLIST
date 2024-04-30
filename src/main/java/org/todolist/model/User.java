@@ -6,6 +6,7 @@ public class User {
     private String confirmpasswd;
     private String email;
     private String gender;
+     private int  tasknewno;
 
 
     public User(int userid, String todousername, String passwd, String email, String gender) {
@@ -15,6 +16,7 @@ public class User {
         this.confirmpasswd = this.confirmpasswd;
         this.email = this.email;
         this.gender = this.gender;
+
     }
 
 

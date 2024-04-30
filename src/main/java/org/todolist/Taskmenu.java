@@ -7,28 +7,24 @@ import java.util.Scanner;
 
 import static org.todolist.Register.*;
 
-//import static org.todolist.Register.userid;
-//import static org.todolist.mainmenu.loggedIn;
 public class Taskmenu {
-    static Scanner sc = new Scanner(System.in);
-    static String tasknew_action;
+    public static Scanner sc = new Scanner(System.in);
+    public static String tasknew_action;
     static int tasknewno;
     static String tasknewwork;
-    static String task_action;
-    static int taskno;
-    static String taskwork;
     User user = new User(getUserId(), todousername,
-            passwd, email, gender);
+            passwd, email, gender );//tasknewno
     private Timestamp timerecorded;
 
-    private String tasknewwork() {
+    private String Tasknewwork() {
         return  tasknewwork;
     }
+    private int Tasknewno(){return tasknewno;}
 
     public static String task_action() {
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the task which you need to proceed add,modify,delete,display");
+        System.out.println("Enter the task which you need to proceed add,modify,delete,display,exit");
          tasknew_action = sc.nextLine();
         System.out.println("1.Create a task");
         System.out.println("2.Update a task");

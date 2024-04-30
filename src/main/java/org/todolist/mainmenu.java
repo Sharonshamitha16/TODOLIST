@@ -90,12 +90,19 @@ public class mainmenu {
                             break;
 
                         case 4:
-                            System.out.println(Displaytask.displaytask());
-                            break;
+                           // Task task2 = Displaytask.displaytask();
+                           // Task task2 = Displaytask.displaytask();
+                            //if (task2 != null) {
+                                //System.out.println("Task details:");
+                                System.out.println(Displaytask.displaytask());
 
+                            break;
                         case 5:
                             loggedIn = false;
                             System.out.println("Logged out successfully.");
+                            taskaction=false;
+                            exit = true; // Exit the inner loop
+
                             break;
 
                         default:
