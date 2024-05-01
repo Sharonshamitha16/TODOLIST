@@ -37,7 +37,7 @@ public class Addtask {
                 if (generatedKeys.next()) {
                     int createdTaskNo = generatedKeys.getInt(1);
                     System.out.println("Task created successfully with number: " + createdTaskNo);
-                    return userId;
+                    //return userId;
                 }
             } else {
                 System.out.println("No rows were inserted.");
