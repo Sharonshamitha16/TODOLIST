@@ -19,7 +19,7 @@ public class Updatetask {
 
         try (
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TodoUserdetails", "root", "Sharon@1602");
-        ) {//tasknew_action =?,
+        ) {
             String updateQuery = "UPDATE tasknew SET tasknew_action =?, tasknewwork = ?, timerecorded = ? WHERE tasknewno = ? AND todousername = ? ";
             try (PreparedStatement updateStmt = con.prepareStatement(updateQuery)) {
                 updateStmt.setString(1, tasknew_action);
@@ -27,7 +27,7 @@ public class Updatetask {
                 updateStmt.setTimestamp(3, new Timestamp(System.currentTimeMillis())); // Example timestamp, adjust as necessary
                 updateStmt.setInt(4, tasknewno); // Assuming tasknewno is the task number to update
                 updateStmt.setString(5, Login.todousername); // Assuming todousername is the username associated with the task
-                // updateStmt.setInt(5, Register.getUserId());
+
                 int rowsAffected = updateStmt.executeUpdate();
                 if (rowsAffected > 0) {
                     resultMessage = "Task has been updated successfully.";
