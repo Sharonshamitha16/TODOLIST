@@ -80,6 +80,7 @@ package org.todolist;
 import java.sql.*;
 import java.util.Scanner;
 
+import static org.todolist.Register.todousername;
 import static org.todolist.Taskmenu.tasknew_action;
 import static org.todolist.Taskmenu.tasknewwork;
 
@@ -99,17 +100,20 @@ public class Displaytask {
             try (ResultSet rs = statement.executeQuery()) {
                 if (rs.next()) {
                     // Retrieve task details
+                    todousername =rs.getString("todousername");
                     tasknewno = rs.getInt("tasknewno");
+                    //Register.getUserId() = rs.getInt("userid");
                      tasknew_action = rs.getString("tasknew_action");
                      tasknewwork = rs.getString("tasknewwork");
                     Timestamp timeRecorded = rs.getTimestamp("timerecorded");
-                  //  System.out.println("Task Number: " + tasknewno);
+                    System.out.println("username :" + todousername);
+                   System.out.println("Task Number: " + tasknewno);
                     System.out.println("Task Action: " + tasknew_action);
                     System.out.println("Task Work: " + tasknewwork);
                     System.out.println("Time Recorded: " + timeRecorded);
 
                     // Create and return a Task object
-                    return tasknewno;
+                    //return tasknewno;
                 } else {
                     System.out.println("No task found for the given task number and username.");
                 }
