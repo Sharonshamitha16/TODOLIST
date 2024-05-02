@@ -80,27 +80,30 @@ package org.todolist;
 import java.sql.*;
 import java.util.Scanner;
 
+import static org.todolist.Taskmenu.tasknew_action;
+import static org.todolist.Taskmenu.tasknewwork;
+
 public class Displaytask {
     public static int displaytask() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the task number which you want to display:");
         int tasknewno = sc.nextInt();
 
-        String query = "SELECT * FROM tasknew WHERE todousername = ? AND tasknewno = ? ";
+        String query = "SELECT * FROM tasknew WHERE  tasknewno = ? ";
         try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TodoUserdetails", "root", "Sharon@1602");
              PreparedStatement statement = con.prepareStatement(query)) {
 
-            statement.setString(1, Register.todousername);
-            statement.setInt(2,tasknewno);
+           // statement.setString(1, Register.todousername);
+            statement.setInt(1,tasknewno);
 
             try (ResultSet rs = statement.executeQuery()) {
                 if (rs.next()) {
                     // Retrieve task details
                     tasknewno = rs.getInt("tasknewno");
-                    String tasknew_action = rs.getString("tasknew_action");
-                    String tasknewwork = rs.getString("tasknewwork");
+                     tasknew_action = rs.getString("tasknew_action");
+                     tasknewwork = rs.getString("tasknewwork");
                     Timestamp timeRecorded = rs.getTimestamp("timerecorded");
-                    System.out.println("Task Number: " + tasknewno);
+                  //  System.out.println("Task Number: " + tasknewno);
                     System.out.println("Task Action: " + tasknew_action);
                     System.out.println("Task Work: " + tasknewwork);
                     System.out.println("Time Recorded: " + timeRecorded);

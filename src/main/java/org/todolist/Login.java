@@ -24,9 +24,7 @@ public class Login {
                 System.out.println("Please provide password, don't leave it blank.");
                 return false;
             }
-
-
-            if ( authenticateUser(todousername, passwd)) {
+            if (authenticateUser(todousername, passwd)) {
                 System.out.println("Login successful. Welcome, " + todousername + "!");
                 //System.out.println("task number is:"+createdTaskNo);
                 if (hasTasks(todousername)) {
@@ -63,7 +61,7 @@ public class Login {
         // String query1 = "SELECT userid FROM UserRegisternew WHERE todousername = ? AND passwd = ?";
 
         PreparedStatement pst1 = con.prepareStatement(query1);
-       pst1.setString(1, passwd);
+        pst1.setString(1, passwd);
 
 
         ResultSet rs1 = pst1.executeQuery();
@@ -85,23 +83,22 @@ public class Login {
     }
 
 
+    static boolean hasTasks(String todousername) throws SQLException {
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TodoUserdetails", "root", "Sharon@1602");
+        String query = "SELECT tasknewno  FROM tasknew WHERE todousername = ?";
+        PreparedStatement pst = con.prepareStatement(query);
+        pst.setString(1, todousername);
+        //  pst.setString(2, String.valueOf(tasknewno));
+        ResultSet rs = pst.executeQuery();
 
+        if (rs.next()) {
+            int tasknewno = rs.getInt("tasknewno");
+            return tasknewno > 0;
+        }
 
-static boolean hasTasks(String todousername) throws SQLException {
-    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TodoUserdetails", "root", "Sharon@1602");
-    String query = "SELECT tasknewno  FROM tasknew WHERE todousername = ?";
-    PreparedStatement pst = con.prepareStatement(query);
-    pst.setString(1, todousername);
-  //  pst.setString(2, String.valueOf(tasknewno));
-    ResultSet rs = pst.executeQuery();
-
-    if (rs.next()) {
-        int tasknewno = rs.getInt("tasknewno");
-        return tasknewno > 0;
+        return false;
     }
 
-    return false;
-}
     static int getTaskNumber(String todousername) throws SQLException {
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TodoUserdetails", "root", "Sharon@1602");
         String query = "SELECT tasknewno  FROM tasknew WHERE todousername = ?";

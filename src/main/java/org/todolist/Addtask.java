@@ -2,10 +2,15 @@ package org.todolist;
 
 import java.sql.*;
 
+import static org.todolist.Taskmenu.sc;
+
 public class Addtask {
+    public static String tasknew_action;
     public static int addtask() throws SQLException {
+        System.out.println("Enter the task which you perform");
+         tasknew_action = sc.nextLine();
         System.out.println("Enter the task which you want to add:");
-        String tasknew_work = Taskmenu.sc.nextLine();
+        String tasknew_work = sc.nextLine();
 
         int userId = Register.getUserId();
 
@@ -23,7 +28,8 @@ public class Addtask {
 //
 //        PreparedStatement selectpst = con.prepareStatement(query1,Statement.RETURN_GENERATED_KEYS);
        // ResultSet rs1 = selectpst.executeQuery();
-        try (PreparedStatement pst = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement pst = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS))
+        {
            //
             pst.setInt(1, Register.getUserId());
             pst.setString(2,Register.todousername);
@@ -41,13 +47,15 @@ public class Addtask {
                 }
             } else {
                 System.out.println("No rows were inserted.");
+                System.out.println("Failed to create task.");
+
             }
-        } catch (SQLException e) {
+        } catch (SQLException e)
+        {
             // Print SQL exception details
             e.printStackTrace();
             System.out.println("SQL Exception: " + e.getMessage());
         }
-        System.out.println("Failed to create task.");
         return -1;
     }
 

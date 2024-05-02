@@ -6,48 +6,108 @@ import static org.todolist.Register.*;
 import static org.todolist.Taskmenu.*;
 
 public class Deletetask {
+
+    public static String tasknew_action;
     public static Object deletetask() throws SQLException {
-        System.out.println("Enter the task number which you wanna delete");
+        System.out.println("Enter the task which you need to perform");
+         tasknew_action = sc.nextLine();
+        System.out.println("Enter the task number which you want to delete");
+        int tasknewno = sc.nextInt();
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TodoUserdetails", "root", "Sharon@1602");
 
-//        String query3 = "SELECT UserRegisternew.userid, tasknew.tasknew_action, tasknew.tasknewwork, tasknew.timerecorded " +
-//                "FROM tasknew " +
-//                "INNER JOIN UserRegisternew ON tasknew.userid = UserRegisternew.userid";
-//
-        String query3 = " select UserRegisternew.userid, UserRegisternew.todousername, task.task_action ,task.taskwork ,task.timerecorded from task\n" +
-                "  right join   UserRegisternew on  UserRegisternew.userid = task.userid and UserRegisternew.todousername =task.todousername\n" +
-                "  WHERE UserRegisternew.todousername = ? AND UserRegisternew.passwd = ?;\n";
-
+        String query3 = "SELECT userid FROM UserRegisternew WHERE todousername = ? AND passwd = ?";
         try {
             PreparedStatement pst1 = con.prepareStatement(query3);
             pst1.setString(1, todousername);
-
             pst1.setString(2, passwd);
-            int rows1 = pst1.executeUpdate(query3);
 
             ResultSet rs = pst1.executeQuery();
             if (rs.next()) {
+                int userid = rs.getInt("userid");
+                String deleteQuery = "UPDATE tasknew SET tasknew_action = NULL," +
+                        " tasknewwork = NULL WHERE tasknewno = ? AND userid = ?";
+                PreparedStatement pst2 = con.prepareStatement(deleteQuery);
+                pst2.setInt(1, tasknewno);
+                pst2.setInt(2, userid);
 
-                Timestamp timerecorded = rs.getTimestamp("timerecorded");
-                query3 = "DELETE FROM tasknew WHERE tasknew_action = ? and tasknewno = ? and userid =? and todousername =?";
-                PreparedStatement pst2 = con.prepareStatement(query3);
-                pst2.setInt(1, rs.getInt(getUserId()));
-                pst2.setString(2, rs.getString(todousername));
-                pst2.setString(3, tasknew_action);
-                pst2.setString(4, tasknewwork);
-                pst2.setTimestamp(5, timerecorded);
-
-                pst2 = con.prepareStatement(query3);
-                int rows = pst2.executeUpdate(query3);
-
+                int rowsUpdated = pst2.executeUpdate();
+                if (rowsUpdated > 0) {
+                    return "Task has been deleted successfully";
+                } else {
+                    return "Task not found or could not be deleted";
+                }
+            } else {
+                return "User not found or incorrect password";
             }
-
-
-            return "task has been deleted successfully";
-        } catch (Exception E) {
-            System.out.println("invalid task number ... ");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "An error occurred while deleting the task";
         }
-        return "task has been deleted successfully";
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    public static Object deletetask() throws SQLException {
+//        System.out.println("Enter the task number which you wanna delete");
+//        tasknewno = sc.nextInt();
+//        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TodoUserdetails", "root", "Sharon@1602");
+//
+////        String query3 = "SELECT UserRegisternew.userid, tasknew.tasknew_action, tasknew.tasknewwork, tasknew.timerecorded " +
+////                "FROM tasknew " +
+////                "INNER JOIN UserRegisternew ON tasknew.userid = UserRegisternew.userid";
+////
+//        String query3 = " select UserRegisternew.userid, UserRegisternew.todousername, tasknew.tasknew_action ,tasknew.tasknewwork ,tasknew.timerecorded from tasknew\n" +
+//                "  right join   UserRegisternew on  UserRegisternew.userid = tasknew.userid and UserRegisternew.todousername =tasknew.todousername\n" +
+//                "  WHERE UserRegisternew.todousername = ? AND UserRegisternew.passwd = ?;\n";
+//
+//        try {
+//            PreparedStatement pst1 = con.prepareStatement(query3);
+//            pst1.setString(1, todousername);
+//            pst1.setString(2, passwd);
+//
+//            ResultSet rs = pst1.executeQuery();
+//            if (rs.next()) {
+//                Timestamp timerecorded = rs.getTimestamp("timerecorded");
+//                //UPDATE tasknew SET column_name = NULL WHERE tasknewno = ? AND userid = ?"
+//                String deleteQuery = "UPDATE tasknew  SET   tasknew  tasknew_action=null,  tasknewwork=null where tasknewno= ? and todousername=?";
+//                PreparedStatement pst2 = con.prepareStatement(deleteQuery);
+//                pst2.setString(1, tasknew_action); // Assuming tasknewno is a variable declared somewhere
+//                pst2.setString(2,tasknewwork); // Assuming "userid" is the column name in the result set
+//               pst2.setInt(3,tasknewno);
+//               pst2.setString(4,todousername);
+//                int rowsDeleted = pst2.executeUpdate();
+//
+//                if (rowsDeleted > 0) {
+//                    return "Task has been deleted successfully";
+//                } else {
+//                    return "Task not found or could not be deleted";
+//                }
+//            } else {
+//                return "User not found";
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            return "An error occurred while deleting the task";
+//        }
+//
+//
+//    }
+//}

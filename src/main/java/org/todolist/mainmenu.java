@@ -29,7 +29,7 @@ public class mainmenu {
 
                 switch (choice1) {
                     case 1:
-                        String regmsg = (String) register();
+                        String regmsg = register();
                         if (regmsg.contains("successfully")) {
 
                             System.out.println(regmsg);
@@ -63,48 +63,30 @@ public class mainmenu {
             }
 
             if (loggedIn) {
-
                 boolean taskaction = true;
                 while (taskaction) {
                     System.out.println(task_action());
                     int choice2 = sc.nextInt();
                     sc.nextLine();
-
                     switch (choice2) {
                         case 1:
                             System.out.println(addtask());
-//                        if(addtask.contains("successfully")) {
-//                            System.out.println(task_action());
-//                        }
                             break;
-
-
                         case 2:
                             System.out.println(Updatetask.updatetask());
-
                             break;
-
                         case 3:
                             System.out.println(Deletetask.deletetask());
-
                             break;
-
                         case 4:
-                           // Task task2 = Displaytask.displaytask();
-                           // Task task2 = Displaytask.displaytask();
-                            //if (task2 != null) {
-                                //System.out.println("Task details:");
-                                System.out.println(Displaytask.displaytask());
-
+                            System.out.println(Displaytask.displaytask());
                             break;
                         case 5:
                             loggedIn = false;
                             System.out.println("Logged out successfully.");
-                            taskaction=false;
+                            taskaction = false;
                             exit = true; // Exit the inner loop
-
                             break;
-
                         default:
                             throw new IllegalStateException("Unexpected value: " + choice2);
                     }

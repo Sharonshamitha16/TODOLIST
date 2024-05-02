@@ -52,7 +52,7 @@ public class Register {
         // Call the DAO method to register the user
         try {
             userId = userDAO.register(todousername, passwd, email, gender);
-            System.out.println("Successfully completed registration with User ID: " + userId);
+            System.out.println(" Successfully completed registration with User ID: " + userId);
             return "successfully completed registration...!!!";
         } catch (SQLIntegrityConstraintViolationException e) { /////////////////////////////////////////////
             System.out.println("Username already exists. Please choose a different username.");

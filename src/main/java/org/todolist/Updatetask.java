@@ -4,9 +4,13 @@ import java.sql.*;
 
 import static org.todolist.Taskmenu.*;
 
+
 public class Updatetask {
+    public static String tasknew_action;
     public static String updatetask() {
         String resultMessage = "Task update failed."; // Default message
+        System.out.println("Enter the task which you need perform");
+        tasknew_action = sc.nextLine();
         System.out.println("Enter the task number which you wanna update");
         tasknewno = Integer.parseInt(sc.nextLine());
         System.out.println("Enter task u need to update");
