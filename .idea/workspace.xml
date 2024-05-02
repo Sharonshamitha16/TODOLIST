@@ -5,9 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="43d7ad69-d8ee-4d64-a7b3-87dd684b3b8f" name="Changes" comment="01-05-2024">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/todolist/deleterow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Addtask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Addtask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Deletetask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Deletetask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Displaytask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Displaytask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Register.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Taskmenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Taskmenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Updatetask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Updatetask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/dao/TaskAddingandgeneratingtaskno.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/junk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/junk2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/loginexam.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/mainmenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/mainmenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/reg junk.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -324,7 +336,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714654048500</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="01-05-2024">
+      <option name="closed" value="true" />
+      <created>1714655344579</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1714655344579</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
